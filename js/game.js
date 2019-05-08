@@ -1,7 +1,7 @@
 
 
 
-var canvas, ctx, HEIGHT, WIDTH, frames =0, maxJump = 2,
+var canvas, ctx, HEIGHT, WIDTH, frames =0, maxJump = 2, player =0,
 
 ground = {
   y: 0,
@@ -115,8 +115,9 @@ function draw(){
 }
 
 
-function play()
+function play(p)
 {
+  player = p;
   document.getElementById("gb").innerHTML = "";
   main();
   randomText();

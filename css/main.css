@@ -1,11 +1,11 @@
 @font-face {
   font-family: '8Bit';
-  src:url('src/8-bit pusab.ttf');
+  src:url('../src/font/8-bit pusab.ttf');
 }
 
 body{
-  background-image: url('src/bg.jpg');
-  background-color: rgba(0,0,255,1);
+  background-image: url('../src/img/bg.jpg');
+  background-color: rgba(0,0,0,1);
 
   -webkit-user-select: none; /* Safari 3.1+ */
   -moz-user-select: none; /* Firefox 2+ */
@@ -32,7 +32,7 @@ body{
 }
 
 .game{
-background-color: rgba(255,255,255,0.3);
+background-color: rgba(255,255,255,0);
 width: 90%;
 height: 35%;
 max-width: : 600px;
@@ -57,6 +57,7 @@ font-weight: inherit;
     max-width: 100%;
     height: auto;
     display: block;
+    
 }
 
 #buttonPlay{

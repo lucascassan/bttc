@@ -1,22 +1,44 @@
 <html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <link rel="stylesheet" href="style.css">
-  <script type="text/javascript" src="game.js"></script>
-  <script type="text/javascript" src="changeText.js"></script>
-
-
-<!--  <iframe src="src\001.mp3" allow="autoplay" id="audio" style="display:none"></iframe> -->
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/select.css">
+  <script type="text/javascript" src="js/game.js"></script>
+  <script type="text/javascript" src="js/changeText.js"></script>
+  <link rel="shortcut icon" href="src/icon/both01.ico" />
+  <title>Back to The Cassoshi</title>
+  <!--  <iframe src="src\001.mp3" allow="autoplay" id="audio" style="display:none"></iframe> -->
 </head>
 
 <body>
   <div class="all">
     <div class="logo">
-      <img src="logo.png" style='height: 100%; width: 100%; object-fit: contain'/>
+      <img src="src/img/logo.png" style='height: 100%; width: 100%; object-fit: contain'/>
     </div>
 
     <div class="game" id="gb">
-      <a type="button" id="buttonPlay" value="Jogar" onclick="play()">PLAY THE GAME</a>
+
+      <div class="centerGame">
+        <div>
+          <figure  id="container00" onclick="play()">
+            <img src="src\select\cassan.png" alt="" id="select00">
+            <figcaption>CASSAN</figcaption>
+          </figure>
+        </div>
+        <div>
+          <figure id="container01" onclick="play()">
+            <img src="src\select\yoshi.png" alt="" id="select01">
+            <figcaption>YOSHI</figcaption>
+          </figure>
+
+        </div>
+
+
+      </div>
+
+
+      <!--      <a type="button" id="buttonPlay" value="Jogar" onclick="play()">PLAY THE GAME</a> -->
+
     </div>
 
     <div class="creditos">
@@ -31,6 +53,7 @@
 
 
 <!--
+
 
 
 -->

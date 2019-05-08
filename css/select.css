@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css?family=Press+Start+2P');
+
+#select01, #select00 {
+  width: 100%;
+}
+
+img {
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+}
+
+#container01, #container00 {
+  display: inline-block;
+  position: relative;
+  width: 35%;
+  max-width: 100px;
+  margin: 0px;
+}
+
+
+
+#container01 figcaption, #container00 figcaption{
+  position: absolute;
+  width: 100%;
+  bottom: 11%;
+  text-align: center;
+  font-size: 8px;
+  color: rgba(255,255,255,0.5);
+  font-family: '8Bit';
+  margin-top: 20px;
+
+}
+
+#container01:hover{
+
+  -webkit-filter: drop-shadow(1px 1px 0 #305e72)
+  drop-shadow(-1px -1px 0 #305e72);
+  filter: drop-shadow(1px 1px 0 #305e72)
+  drop-shadow(-1px -3px 0 #305e72);
+
+  cursor: pointer;
+}
+
+#container00{
+  float:left;
+  margin-left:15%;
+}
+#container01{
+  float:right;
+  margin-right:15%;
+}
+
+#container00:hover{
+
+  -webkit-filter: drop-shadow(1px 1px 0 #305e72)
+  drop-shadow(-1px -1px 0 #305e72);
+  filter: drop-shadow(1px 1px 0 #305e72)
+  drop-shadow(-1px -1px 0 #305e72);
+  cursor: pointer;
+}
+
+.centerGame{
+width: 40%;
+margin:0px auto;
+padding-top: 40px;
+}
