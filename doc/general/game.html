@@ -1,0 +1,107 @@
+<html>
+  <head>
+
+  </head>
+  <body>
+
+    <style>
+      canvas {
+        position:absolute;
+        top: 0px;
+        bottom: 0px;
+        left:0px;
+        right:0px;
+        margin:auto;
+      }
+    </style>
+
+    <script>
+      var canvas, ctx, HEIGHT, WIDTH, frames =0, maxJump = 2,
+
+      ground = {
+        y: 450,
+        a: 50,
+        c: "#ffdf78",
+        draw: function() {
+          ctx.fillStyle = this.c;
+          ctx.fillRect(0, this.y, WIDTH, this.a);
+        }
+      },
+      block = {
+        x:50,
+        y:0,
+        a:50,
+        l:50,
+        c: "#000",
+        gravity: 1.5,
+        speed: 0,
+        forceJump:15,
+        cJump:0,
+
+        update:function(){
+          this.speed += this.gravity;
+          this.y += this.speed;
+          if (this.y > ground.y - this.a){
+            this.y = ground.y - this.a;
+            this.cJump = 0;
+          }
+        },
+        draw:function(){
+          ctx.fillStyle = this.c;
+          ctx.fillRect(this.x,this.y,this.a,this.l);
+
+        },
+        jump:function(){
+          if (this.cJump < maxJump){
+          this.speed =-this.forceJump;
+          this.cJump++;
+          }
+        }
+      };
+
+
+
+      function main(){
+        HEIGHT = 500;//window.innerWeight;
+        WIDTH = 500;//window.innerWeight;
+
+        canvas = document.createElement("canvas");
+        canvas.width = WIDTH;
+        canvas.height = HEIGHT;
+        canvas.style.border = "1px solid #000";
+
+        ctx = canvas.getContext("2d");
+        document.body.appendChild(canvas);
+        document.addEventListener("mousedown", click);
+
+        run();
+      }
+
+      function click(event){
+        block.jump();
+      }
+
+      function run(){
+        update();
+        draw();
+
+        window.requestAnimationFrame(run);
+
+      }
+      function update(){
+        frames++;
+        block.update();
+      }
+
+      function draw(){
+        ctx.fillStyle = "#50beff";
+        ctx.fillRect(0,0,800,800);
+        ground.draw();
+        block.draw();
+      }
+
+
+      main();
+    </script>
+  </body>
+</html>
