@@ -5,6 +5,7 @@
   <link rel="stylesheet" href="css/select.css">
   <script type="text/javascript" src="js/game.js"></script>
   <script type="text/javascript" src="js/changeText.js"></script>
+  <script type="text/javascript" src="js/fbshare.js"></script>
   <link rel="shortcut icon" href="src/icon/both01.ico" />
   <title>Back to The Cassoshi</title>
   <!--  <iframe src="src\001.mp3" allow="autoplay" id="audio" style="display:none"></iframe> -->
@@ -20,7 +21,7 @@
 <body>
   <div class="all">
     <div class="logo">
-      <img src="src/img/logo.png" style='height: 100%; width: 100%; object-fit: contain'/>
+      <img src="src/img/logo.png" onclick="shareonFB()" style='height: 100%; width: 100%; object-fit: contain'/>
     </div>
 
     <div class="game" id="gb">
@@ -33,7 +34,7 @@
           </figure>
         </div>
         <div>
-          <figure id="container01" onclick="play()">
+          <figure id="container01" onclick="shareonFB()">
             <img src="src\select\yoshi.png" alt="" id="select01">
             <figcaption>YOSHI</figcaption>
           </figure>
