@@ -1,6 +1,6 @@
 
 
-
+var imgChar = new Image();
 var canvas, ctx, HEIGHT, WIDTH, frames =0, maxJump = 2, speed =10,
 stateNow,
 state = {
@@ -17,10 +17,9 @@ ground = {
     this.y = (HEIGHT-this.a);
     ctx.fillStyle = this.c;
     ctx.fillRect(0, this.y, WIDTH, this.a);
-
-    //ctx.fillRect(0, this.y, WIDTH, this.a);
-  }
+    }
 },
+
 block = {
   x:50,
   y:0,
@@ -43,8 +42,11 @@ block = {
     }
   },
   draw:function(){
-    ctx.fillStyle = this.c;
-    ctx.fillRect(this.x,this.y,this.a,this.l);
+
+
+    ctx.drawImage(imgChar, this.x, this.y);
+
+
   },
   jump:function(){
     if (this.cJump < maxJump){
@@ -52,6 +54,8 @@ block = {
       this.cJump++;
     }
   }
+
+
 },
 
 obst = {
@@ -114,9 +118,10 @@ function main(){
   canvas.height = HEIGHT;
 
   ctx = canvas.getContext("2d");
-  //document.body.appendChild(canvas);
   elem.appendChild(canvas);
   document.addEventListener("mousedown", click);
+
+  imgChar.src = "00.png"
 
   stateNow = state.playing;
   run();
@@ -128,14 +133,20 @@ function run(){
   update();
   draw();
   window.requestAnimationFrame(run);
+
+
+
+
+
+
 }
 function update(){
   frames++;
   block.update();
   obst.update();
 
-  if (stateNow == state.gameOver)
-  alert("You Lose");
+  //  if (stateNow == state.gameOver)
+  //  alert("You Lose");
 
 }
 function draw(){
