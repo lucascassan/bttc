@@ -17,8 +17,14 @@ window.fbAsyncInit = function() {
 
 function shareonFB(){
 FB.ui({
-method: 'share',
-href: 'http://www.lucascassan.github.io/bttc/',
+    display: 'popup',
+    method: 'share',
+    title: '150 pontos',
+    description: 'BACK TO THE CASSOSHI • COMING SOON • 29.06.2019',
+    link: 'THIS IS A LINK TO YOUR QUIZ'S PAGE ON YOUR WEBSITE',
+    picture: 'THIS PICTURE WILL BE THE FACEBOOK SHARE IMAGE',
+    href: 'http://www.lucascassan.github.io/bttc/',
+
 }, function(response){});
 
 }

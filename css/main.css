@@ -1,7 +1,9 @@
 @font-face {
   font-family: '8Bit';
-  src:url('../src/font/8-bit pusab.ttf');
+  src:url('../src/font/8Bit.ttf');
+  /* src:url('../src/font/8Bit.ttf'); */
 }
+
 
 body{
   background-image: url('../src/img/bg.jpg');
@@ -13,16 +15,14 @@ body{
   user-select: none; /* Standard syntax */
 
 }
-
 .logo{
   width: 90%;
   height: 60%;
   max-width: : 600px;
---  background-color: rgb(255,255,0);
+  /* background-color: rgb(255,255,0); */
   margin:auto;
   display: block;
 }
-
 .all{
   background-color: rgba(40,40,40, 0);
   max-width: 900px;
@@ -30,44 +30,39 @@ body{
   height: 100%;
   margin:auto;
 }
-
 .game{
-background-color: rgba(255,255,255,0);
-width: 90%;
-height: 35%;
-max-width: : 600px;
-margin:auto;
+  background-color: transparent;
+  width: 90%;
+  height: 35%;
+  max-width: : 600px;
+  margin:auto;
 }
-
 .creditos{
-color: rgba(255,255,255,0.38);
-text-align: center;
-margin: 0px;
-font-family: '8Bit';
-font-weight: inherit;
+  color: rgba(255,255,255,0.38);
+  text-align: center;
+  margin: 0px;
+  font-family: '8Bit';
+  font-weight: inherit;
 }
 .creditos h1 {
-  margin: 0;
-  margin-top: 5px;
-  padding: 0;
-  font-size: 12px;
+  margin: 0px;
+  padding: 0px;
+  font-size: 10px;
+  background-color: rgba(0,0,0,0.8);
 }
 
 .logo img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    
+  max-width: 100%;
+  height: auto;
+  display: block;
+
 }
 
 #buttonPlay{
   color: rgba(255,255,255,1);
   text-align: center;
   margin: 0px;
-  font-family: '8Bit';
+  font-family: 'Pixelart';
   font-weight: inherit;
   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-  }
-
-
 }

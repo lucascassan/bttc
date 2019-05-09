@@ -1,13 +1,9 @@
 
 
 var imgChar = new Image();
-var canvas, ctx, HEIGHT, WIDTH, frames =0, maxJump = 2, speed =10,
-stateNow,
-state = {
-  playing  :0,
-  gameOver :1
-},
-
+var canvas, ctx, HEIGHT, WIDTH, frames =0, maxJump = 2, speed =5,
+stateNow,state = {  playing  :0,  gameOver :1 },
+charNow, chars = {  cassan : '00',  yoshi : '01'},
 
 ground = {
   y: 0,
@@ -17,9 +13,8 @@ ground = {
     this.y = (HEIGHT-this.a);
     ctx.fillStyle = this.c;
     ctx.fillRect(0, this.y, WIDTH, this.a);
-    }
+  }
 },
-
 block = {
   x:50,
   y:0,
@@ -42,10 +37,8 @@ block = {
     }
   },
   draw:function(){
-
-
+    ctx.clearRect(0, 0, WIDTH,HEIGHT);
     ctx.drawImage(imgChar, this.x, this.y);
-
 
   },
   jump:function(){
@@ -57,7 +50,6 @@ block = {
 
 
 },
-
 obst = {
   _obs: [],
   timeInsert: 0,
@@ -111,21 +103,17 @@ function main(){
 
   HEIGHT = elem.offsetHeight; //window.innerWeight;
   WIDTH = elem.offsetWidth;//window.innerWeight;
-
-
   canvas = document.createElement("canvas");
   canvas.width = WIDTH;
   canvas.height = HEIGHT;
-
   ctx = canvas.getContext("2d");
   elem.appendChild(canvas);
   document.addEventListener("mousedown", click);
-
-  imgChar.src = "00.png"
-
+  loadcharSprite();
   stateNow = state.playing;
   run();
 }
+
 function click(event){
   block.jump();
 }
@@ -133,36 +121,32 @@ function run(){
   update();
   draw();
   window.requestAnimationFrame(run);
-
-
-
-
-
-
+}
+function loadcharSprite(){
+  if (stateNow != state.gameOver){
+    imgChar.src = 'src/char/'+charNow+'/idle.png';
+  }
+  else{
+    imgChar.src = 'src/char/'+charNow+'/dead.png';
+  }
 }
 function update(){
   frames++;
   block.update();
   obst.update();
-
-  //  if (stateNow == state.gameOver)
-  //  alert("You Lose");
-
 }
 function draw(){
-  ctx.fillStyle = "#50beff";
+  ctx.fillStyle = "transparent";
   ctx.fillRect(0,0,WIDTH,HEIGHT);
   obst.draw();
   ground.draw();
-
   block.draw();
-  //  alert(HEIGHT);
-  //  obst.insert();
 }
 
 
-function play()
+function play(character)
 {
+  charNow = character;
   document.getElementById("gb").innerHTML = "";
   main();
   randomText();
