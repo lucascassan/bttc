@@ -1,13 +1,7 @@
 
 
 
-var canvas, ctx, HEIGHT, WIDTH, frames =0, maxJump = 2, speed =10,
-stateNow,
-state = {
-  playing  :0,
-  gameOver :1
-},
-
+var canvas, ctx, HEIGHT, WIDTH, frames =0, maxJump = 2,
 
 ground = {
   y: 0,
@@ -36,10 +30,9 @@ block = {
   update:function(){
     this.speed += this.gravity;
     this.y += this.speed;
-    if (this.y > ground.y - this.a && stateNow != state.gameOver ){
+    if (this.y > ground.y - this.a){
       this.y = ground.y - this.a;
       this.cJump = 0;
-      this.speed = 0;
     }
   },
   draw:function(){
@@ -53,20 +46,16 @@ block = {
     }
   }
 },
-
 obst = {
   _obs: [],
-  timeInsert: 0,
+
 
   insert: function(){
-
     this._obs.push({
-      x: WIDTH,
+      x: 0,
       l: 30 + Math.floor(20 * Math.random()),
       a: 30 + Math.floor(120 * Math.random())
     });
-
-    this.timeInsert = 40 + Math.floor(20 * Math.random()) ;
   },
 
   draw: function(){
@@ -75,40 +64,17 @@ obst = {
       ctx.fillStyle = '#000';
       ctx.fillRect( obs.x,ground.y - obs.a, obs.l, obs.a);
     }
-  },
-
-  update: function(){
-    if (this.timeInsert ==0)
-    obst.insert();
-    else
-    this.timeInsert--;
-
-
-    for (var i = 0, tam = this._obs.length; i<tam; i++) {
-      var obs = this._obs[i];
-      obs.x -= speed;
-
-
-      if (block.x < obs.x+obs.l  && block.x+block.l >= obs.x  && block.y+block.a >= ground.y-obs.a){
-        stateNow = state.gameOver;
-      }  else if (obs.x <= -obs.l ){
-        this._obs.splice(i,1);
-        tam--;
-        i--;
-      }
-    }
   }
+
+}
 
 
 };
 
 function main(){
   var elem = document.getElementById("gb");
-
   HEIGHT = elem.offsetHeight; //window.innerWeight;
   WIDTH = elem.offsetWidth;//window.innerWeight;
-
-
   canvas = document.createElement("canvas");
   canvas.width = WIDTH;
   canvas.height = HEIGHT;
@@ -118,7 +84,6 @@ function main(){
   elem.appendChild(canvas);
   document.addEventListener("mousedown", click);
 
-  stateNow = state.playing;
   run();
 }
 function click(event){
@@ -132,18 +97,13 @@ function run(){
 function update(){
   frames++;
   block.update();
-  obst.update();
-
-  if (stateNow == state.gameOver)
-  alert("You Lose");
-
+  //  obst.update();
 }
 function draw(){
   ctx.fillStyle = "#50beff";
   ctx.fillRect(0,0,WIDTH,HEIGHT);
   obst.draw();
   ground.draw();
-
   block.draw();
   //  alert(HEIGHT);
   //  obst.insert();
