@@ -1,7 +1,7 @@
 var imgChar = new Image();
 var jumpSound = new Audio('src/music/jump.wav');
 jumpSound.volume = 0.5;
-var deathSound = new Audio('src/music/death.wav');
+var deathSound = new Audio('src/music/death.mp3');
 deathSound.volume = 0.5;
 var music;
 
@@ -83,10 +83,10 @@ obst = {
 
   update: function(){
 
-    // if (this.timeInsert ==0)
-    // obst.insert();
-    // else
-    // this.timeInsert--;
+     if (this.timeInsert ==0)
+     obst.insert();
+   else
+     this.timeInsert--;
 
 
     for (var i = 0, tam = this._obs.length; i<tam; i++) {
@@ -118,6 +118,8 @@ function main(){
   ctx = canvas.getContext("2d");
   elem.appendChild(canvas);
   document.addEventListener("mousedown", click);
+  document.addEventListener("spacebar", click);
+
   loadcharSprite();
   stateNow = state.playing;
   run();
