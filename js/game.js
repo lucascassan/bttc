@@ -82,10 +82,11 @@ obst = {
   },
 
   update: function(){
-    if (this.timeInsert ==0)
-    obst.insert();
-    else
-    this.timeInsert--;
+
+    // if (this.timeInsert ==0)
+    // obst.insert();
+    // else
+    // this.timeInsert--;
 
 
     for (var i = 0, tam = this._obs.length; i<tam; i++) {
