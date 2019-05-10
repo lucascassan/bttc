@@ -1,7 +1,12 @@
-
-
 var imgChar = new Image();
-var canvas, ctx, HEIGHT, WIDTH, frames =0, maxJump = 2, speed =5,
+var jumpSound = new Audio('src/music/jump.wav');
+jumpSound.volume = 0.5;
+var deathSound = new Audio('src/music/death.wav');
+deathSound.volume = 0.5;
+var music;
+
+
+var canvas, ctx, HEIGHT, WIDTH, frames =0, maxJump = 2, speed =5, dead = 0,
 stateNow,state = {  playing  :0,  gameOver :1 },
 charNow, chars = {  cassan : '00',  yoshi : '01'},
 
@@ -35,6 +40,8 @@ block = {
       this.cJump = 0;
       this.speed = 0;
     }
+
+    loadcharSprite();
   },
   draw:function(){
     ctx.clearRect(0, 0, WIDTH,HEIGHT);
@@ -42,9 +49,10 @@ block = {
 
   },
   jump:function(){
-    if (this.cJump < maxJump){
+    if (this.cJump < maxJump && dead == 0){
       this.speed =-this.forceJump;
       this.cJump++;
+      jumpSound.play();
     }
   }
 
@@ -128,6 +136,14 @@ function loadcharSprite(){
   }
   else{
     imgChar.src = 'src/char/'+charNow+'/dead.png';
+
+    if (dead==0){
+      block.y = block.y-10;
+      dead = 1;
+      block.gravity=0.1;
+      deathSound.play();
+      music.pause();
+    }
   }
 }
 function update(){
@@ -148,6 +164,13 @@ function play(character)
 {
   charNow = character;
   document.getElementById("gb").innerHTML = "";
+
+ music = new Audio('src/music/'+character+'.mp3');
+ music.volume = 1;
+ music.play();
+
+
+
   main();
   randomText();
 }
