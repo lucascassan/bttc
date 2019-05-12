@@ -9,7 +9,7 @@ var enems;
 var enemSound;
 
 
-var canvas, ctx, HEIGHT, WIDTH, frames =0, maxJump = 2, speed =4, dead = 0, aa = 1, auxEnem,
+var canvas, ctx, HEIGHT, WIDTH, frames =0, maxJump = 2, dead = 0, aa = 1, auxEnem,
 stateNow,state = {  playing  :0,  gameOver :1 },
 charNow, chars = {  cassan : '00',  yoshi : '01'},
 
@@ -193,7 +193,7 @@ obst = {
   function addEnems()
   {
     enems = new Array(
-      [50,30, 'src/enem/00.png', 'src/enem/00.wav', 10],
-      [45,25, 'src/enem/01.png', 'src/enem/01.wav', 8],
+      [50,30, 'src/enem/00.png', 'src/enem/00.wav', 5],
+      [45,25, 'src/enem/01.png', 'src/enem/01.wav', 3],
     );
   }
