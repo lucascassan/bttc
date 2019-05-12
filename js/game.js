@@ -1,14 +1,18 @@
 var imgChar = new Image();
+var imgEnem = new Image();
 var jumpSound = new Audio('src/music/jump.wav');
 jumpSound.volume = 0.5;
 var deathSound = new Audio('src/music/death.mp3');
 deathSound.volume = 0.5;
 var music;
+var enems;
 
 
-var canvas, ctx, HEIGHT, WIDTH, frames =0, maxJump = 2, speed =5, dead = 0,
+var canvas, ctx, HEIGHT, WIDTH, frames =0, maxJump = 2, speed =5, dead = 0, aa = 1, auxEnem,
 stateNow,state = {  playing  :0,  gameOver :1 },
 charNow, chars = {  cassan : '00',  yoshi : '01'},
+
+
 
 ground = {
   y: 0,
@@ -16,15 +20,15 @@ ground = {
   c: "#555",
   draw: function() {
     this.y = (HEIGHT-this.a);
-    ctx.fillStyle = this.c;
-    ctx.fillRect(0, this.y, WIDTH, this.a);
+  //  ctx.fillStyle = this.c;
+  //  ctx.fillRect(0, this.y, WIDTH, this.a);
   }
 },
 block = {
   x:50,
   y:0,
-  a:50,
-  l:50,
+  a:60,
+  l:40,
   c: "#000",
   gravity: 1.5,
   speed: 0,
@@ -44,15 +48,14 @@ block = {
     loadcharSprite();
   },
   draw:function(){
-    ctx.clearRect(0, 0, WIDTH,HEIGHT);
-    ctx.drawImage(imgChar, this.x, this.y);
 
+    ctx.drawImage(imgChar, this.x, this.y);
+    //ctx.clearRect(0, 0, WIDTH,HEIGHT);
   },
   jump:function(){
     if (this.cJump < maxJump && dead == 0){
       this.speed =-this.forceJump;
       this.cJump++;
-      jumpSound.play();
     }
   }
 
@@ -62,31 +65,33 @@ obst = {
   _obs: [],
   timeInsert: 0,
 
-  insert: function(){
-
+  insert: function(Al, Aa, Aimg){
     this._obs.push({
       x: WIDTH,
-      l: 30 + Math.floor(20 * Math.random()),
-      a: 30 + Math.floor(120 * Math.random())
+      l: Al,
+      a: Aa,
+      img: Aimg
     });
 
-    this.timeInsert = 40 + Math.floor(20 * Math.random()) ;
+    this.timeInsert = 40 + Math.floor(110 * Math.random()) ;
   },
 
   draw: function(){
     for (var i = 0, tam = this._obs.length; i<tam; i++) {
       var obs = this._obs[i];
-      ctx.fillStyle = '#000';
-      ctx.fillRect( obs.x,ground.y - obs.a, obs.l, obs.a);
+      imgEnem.src = obs.img;
+      ctx.drawImage(imgEnem, obs.x, ground.y - obs.a);
     }
   },
 
   update: function(){
 
-     if (this.timeInsert ==0)
-     obst.insert();
-   else
-     this.timeInsert--;
+    if (this.timeInsert ==0){
+      auxEnem = Math.floor(enems.length * Math.random()) ;
+      obst.insert(enems[auxEnem][0],enems[auxEnem][1],enems[auxEnem][2]);
+    }
+    else
+    this.timeInsert--;
 
 
     for (var i = 0, tam = this._obs.length; i<tam; i++) {
@@ -107,6 +112,9 @@ obst = {
 
 };
 
+
+
+
 function main(){
   var elem = document.getElementById("gb");
 
@@ -119,13 +127,18 @@ function main(){
   elem.appendChild(canvas);
   document.addEventListener("mousedown", click);
   document.addEventListener("spacebar", click);
-
+  document.body.onkeyup = function(e){
+    if(e.keyCode == 32){
+      block.jump();
+    }
+  }
   loadcharSprite();
   stateNow = state.playing;
+  addEnems();
   run();
 }
-
 function click(event){
+  jumpSound.play();
   block.jump();
 }
 function run(){
@@ -155,25 +168,25 @@ function update(){
   obst.update();
 }
 function draw(){
-  ctx.fillStyle = "transparent";
-  ctx.fillRect(0,0,WIDTH,HEIGHT);
+  ctx.clearRect(0, 0, WIDTH,HEIGHT);
   obst.draw();
   ground.draw();
   block.draw();
 }
-
-
-function play(character)
-{
+function play(character){
   charNow = character;
   document.getElementById("gb").innerHTML = "";
-
- music = new Audio('src/music/'+character+'.mp3');
- music.volume = 1;
- music.play();
-
-
-
+  music = new Audio('src/music/'+character+'.mp3');
+  music.volume = 1;
+  music.play();
   main();
   randomText();
+}
+
+function addEnems()
+{
+  enems = new Array(
+    [50,30, 'src/enem/00.png'],
+  //  [53,30, 'src/enem/01.png']
+  );
 }
