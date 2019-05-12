@@ -6,9 +6,10 @@ var deathSound = new Audio('src/music/death.mp3');
 deathSound.volume = 0.5;
 var music;
 var enems;
+var enemSound;
 
 
-var canvas, ctx, HEIGHT, WIDTH, frames =0, maxJump = 2, speed =5, dead = 0, aa = 1, auxEnem,
+var canvas, ctx, HEIGHT, WIDTH, frames =0, maxJump = 2, speed =4, dead = 0, aa = 1, auxEnem,
 stateNow,state = {  playing  :0,  gameOver :1 },
 charNow, chars = {  cassan : '00',  yoshi : '01'},
 
@@ -20,8 +21,8 @@ ground = {
   c: "#555",
   draw: function() {
     this.y = (HEIGHT-this.a);
-  //  ctx.fillStyle = this.c;
-  //  ctx.fillRect(0, this.y, WIDTH, this.a);
+    //  ctx.fillStyle = this.c;
+    //  ctx.fillRect(0, this.y, WIDTH, this.a);
   }
 },
 block = {
@@ -65,15 +66,17 @@ obst = {
   _obs: [],
   timeInsert: 0,
 
-  insert: function(Al, Aa, Aimg){
+  insert: function(Al, Aa, Aimg, Asound, Aspeed){
     this._obs.push({
       x: WIDTH,
       l: Al,
       a: Aa,
-      img: Aimg
+      img: Aimg,
+      speed:Aspeed
     });
-
-    this.timeInsert = 40 + Math.floor(110 * Math.random()) ;
+    this.timeInsert = 40 + Math.floor(200 * Math.random()) ;
+    enemSound = new Audio(Asound);
+    enemSound.play();
   },
 
   draw: function(){
@@ -88,105 +91,109 @@ obst = {
 
     if (this.timeInsert ==0){
       auxEnem = Math.floor(enems.length * Math.random()) ;
-      obst.insert(enems[auxEnem][0],enems[auxEnem][1],enems[auxEnem][2]);
+      obst.insert(enems[auxEnem][0],
+        enems[auxEnem][1],
+        enems[auxEnem][2],
+        enems[auxEnem][3],
+        enems[auxEnem][4]);
+      }
+      else
+      this.timeInsert--;
+
+
+      for (var i = 0, tam = this._obs.length; i<tam; i++) {
+        var obs = this._obs[i];
+        obs.x -= obs.speed;
+
+
+        if (block.x < obs.x+obs.l  && block.x+block.l >= obs.x  && block.y+block.a >= ground.y-obs.a){
+          stateNow = state.gameOver;
+        }  else if (obs.x <= -obs.l ){
+          this._obs.splice(i,1);
+          tam--;
+          i--;
+        }
+      }
     }
-    else
-    this.timeInsert--;
 
 
-    for (var i = 0, tam = this._obs.length; i<tam; i++) {
-      var obs = this._obs[i];
-      obs.x -= speed;
+  };
 
 
-      if (block.x < obs.x+obs.l  && block.x+block.l >= obs.x  && block.y+block.a >= ground.y-obs.a){
-        stateNow = state.gameOver;
-      }  else if (obs.x <= -obs.l ){
-        this._obs.splice(i,1);
-        tam--;
-        i--;
+
+
+  function main(){
+    var elem = document.getElementById("gb");
+
+    HEIGHT = elem.offsetHeight; //window.innerWeight;
+    WIDTH = elem.offsetWidth;//window.innerWeight;
+    canvas = document.createElement("canvas");
+    canvas.width = WIDTH;
+    canvas.height = HEIGHT;
+    ctx = canvas.getContext("2d");
+    elem.appendChild(canvas);
+    document.addEventListener("mousedown", click);
+    document.addEventListener("spacebar", click);
+    document.body.onkeyup = function(e){
+      if(e.keyCode == 32){
+        block.jump();
+      }
+    }
+    loadcharSprite();
+    stateNow = state.playing;
+    addEnems();
+    run();
+  }
+  function click(event){
+    jumpSound.play();
+    block.jump();
+  }
+  function run(){
+    update();
+    draw();
+    window.requestAnimationFrame(run);
+  }
+  function loadcharSprite(){
+    if (stateNow != state.gameOver){
+      imgChar.src = 'src/char/'+charNow+'/idle.png';
+    }
+    else{
+      imgChar.src = 'src/char/'+charNow+'/dead.png';
+
+      if (dead==0){
+        block.y = block.y-10;
+        dead = 1;
+        block.gravity=0.1;
+        deathSound.play();
+        music.pause();
       }
     }
   }
-
-
-};
-
-
-
-
-function main(){
-  var elem = document.getElementById("gb");
-
-  HEIGHT = elem.offsetHeight; //window.innerWeight;
-  WIDTH = elem.offsetWidth;//window.innerWeight;
-  canvas = document.createElement("canvas");
-  canvas.width = WIDTH;
-  canvas.height = HEIGHT;
-  ctx = canvas.getContext("2d");
-  elem.appendChild(canvas);
-  document.addEventListener("mousedown", click);
-  document.addEventListener("spacebar", click);
-  document.body.onkeyup = function(e){
-    if(e.keyCode == 32){
-      block.jump();
-    }
+  function update(){
+    frames++;
+    block.update();
+    obst.update();
   }
-  loadcharSprite();
-  stateNow = state.playing;
-  addEnems();
-  run();
-}
-function click(event){
-  jumpSound.play();
-  block.jump();
-}
-function run(){
-  update();
-  draw();
-  window.requestAnimationFrame(run);
-}
-function loadcharSprite(){
-  if (stateNow != state.gameOver){
-    imgChar.src = 'src/char/'+charNow+'/idle.png';
+  function draw(){
+    ctx.clearRect(0, 0, WIDTH,HEIGHT);
+    obst.draw();
+    ground.draw();
+    block.draw();
   }
-  else{
-    imgChar.src = 'src/char/'+charNow+'/dead.png';
-
-    if (dead==0){
-      block.y = block.y-10;
-      dead = 1;
-      block.gravity=0.1;
-      deathSound.play();
-      music.pause();
-    }
+  function play(character){
+    charNow = character;
+    document.getElementById("gb").innerHTML = "";
+    music = new Audio('src/music/'+character+'.mp3');
+    music.volume = 1;
+    music.play();
+    main();
+    randomText();
   }
-}
-function update(){
-  frames++;
-  block.update();
-  obst.update();
-}
-function draw(){
-  ctx.clearRect(0, 0, WIDTH,HEIGHT);
-  obst.draw();
-  ground.draw();
-  block.draw();
-}
-function play(character){
-  charNow = character;
-  document.getElementById("gb").innerHTML = "";
-  music = new Audio('src/music/'+character+'.mp3');
-  music.volume = 1;
-  music.play();
-  main();
-  randomText();
-}
 
-function addEnems()
-{
-  enems = new Array(
-    [50,30, 'src/enem/00.png'],
-  //  [53,30, 'src/enem/01.png']
-  );
-}
+  function addEnems()
+  {
+    enems = new Array(
+      [50,30, 'src/enem/00.png', 'src/enem/00.wav', 10],
+      [45,25, 'src/enem/01.png', 'src/enem/01.wav', 8],
+    );
+  }
