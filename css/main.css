@@ -1,10 +1,7 @@
-@font-face {
-  font-family: '8Bit';
-  src:url('../src/font/8Bit.ttf');
-  /* src:url('../src/font/8Bit.ttf'); */
-}
+
 
 body{
+
   background-image: url('../src/img/bg.jpg');
   background-color: rgba(0,0,0,1);
   -webkit-user-select: none; /* Safari 3.1+ */
@@ -13,6 +10,8 @@ body{
   user-select: none; /* Standard syntax */
   margin: 0px;
   padding: 0px;
+  font-family: 'Press Start 2P';
+  color:#fff;
 
 }
 .logo{
@@ -39,14 +38,16 @@ body{
   height: 35%;
   max-width: : 600px;
   margin:auto;
+  font-family: 'Press Start P2';
 }
 .creditos{
-  color: rgba(255,255,255,0.38);
+  color: rgba(255,255,255,1);
   text-align: center;
   height: 5%
   margin: 0px;
-  font-family: '8Bit';
-  font-weight: inherit;
+  font-size: 40;
+  font-family: 'Press Start 2P', cursive;
+  font-weight: 100;;
 }
 .creditos h1 {
   margin: 0px;
