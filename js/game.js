@@ -7,11 +7,12 @@
 
 var imgChar = new Image();
 var imgEnem = new Image();
-
 var imgHeart = new Image();
 imgHeart.src = "src/misc/Heart.png";
 var imgEmptyHeart = new Image();
 imgEmptyHeart.src = "src/misc/EmptyHeart.png";
+var imgBox = new Image();
+imgBox.src = "src/misc/box.png";
 
 
 var jumpSound = new Audio('src/music/jump.wav');
@@ -116,14 +117,11 @@ score = {
   },
   draw : function(){
     ctx.textAlign = "center";
-    ctx.font      = "20px 'Press Start 2P'";
+    ctx.font      = "27px 'Press Start 2P'";
     ctx.fillStyle = "white";
     ctx.strokeStyle = 'black';
-    ctx.fillText(this._value, WIDTH/2, 60);
-    ctx.strokeText(this._value, WIDTH/2, 60, 50);
-    ctx.fill();
-    ctx.stroke();
-
+    ctx.drawImage( imgBox, WIDTH/2-82, 20);
+    ctx.fillText(this._value, WIDTH/2 , 60);
   }
 },
 health = {
@@ -161,7 +159,6 @@ health = {
 
 
 };
-
 
 function main(){
   loadFonts();
