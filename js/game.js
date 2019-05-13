@@ -4,19 +4,24 @@
 //     alert('Todo conteúdo do arquivo foi carregado pelo navegador');
 // });
 
+
 var imgChar = new Image();
 var imgEnem = new Image();
+
+var imgHeart = new Image();
+imgHeart.src = "src/misc/Heart.png";
+var imgEmptyHeart = new Image();
+imgEmptyHeart.src = "src/misc/EmptyHeart.png";
+
+
 var jumpSound = new Audio('src/music/jump.wav');
-jumpSound.volume = 0.5;
 var deathSound = new Audio('src/music/death.mp3');
+jumpSound.volume = 0.5;
+
 deathSound.volume = 0.5;
-var music;
-var enems;
-var enemSound;
-var canvas, ctx, HEIGHT, WIDTH, frames =0, maxJump = 2, dead = 0, aa = 1, auxEnem, score,
+var music, enemSound;
+var canvas, ctx, HEIGHT, WIDTH, frames =0, maxJump = 2, dead = 0, aa = 1, auxEnem, score, enems, intangible =0,
 stateNow = 1, charNow,
-
-
 ground = {
   y: 0,
   a: 10,
@@ -93,8 +98,8 @@ obst = {
       obs.x -= obs.speed;
 
 
-      if (block.x < obs.x+obs.l  && block.x+block.l >= obs.x  && block.y+block.a >= ground.y-obs.a){
-        gameOver();
+      if (block.x < obs.x+obs.l  && block.x+block.l >= obs.x  && block.y+block.a >= ground.y-obs.a && intangible == 0){
+        health.set(-1);
       }  else if (obs.x <= -obs.l ){
         this._obs.splice(i,1);
         tam--;
@@ -110,18 +115,56 @@ score = {
     this._value = Math.floor(frames/10);
   },
   draw : function(){
-    ctx.font = "40px" + " "+ "Press Start 2P";
-
+    ctx.textAlign = "center";
+    ctx.font      = "20px 'Press Start 2P'";
     ctx.fillStyle = "white";
+    ctx.strokeStyle = 'black';
+    ctx.fillText(this._value, WIDTH/2, 60);
+    ctx.strokeText(this._value, WIDTH/2, 60, 50);
+    ctx.fill();
+    ctx.stroke();
 
-    ctx.textAlign = "right";
-    ctx.fillText(this._value, WIDTH, 40);
   }
+},
+health = {
+  life : 3,
+  draw : function(){
+    for (var i = 0; i < 3; i++) {
+
+      if (this.life >= i+1){
+        ctx.drawImage(imgHeart, 100 + (32*i), 30 );
+      }
+      else{
+        ctx.drawImage(imgEmptyHeart,100+ (32*i), 30 );
+      }
+    }
+  },
+  update: function(){
+    if (intangible > 0)
+    intangible--;
+  },
+  set : function(value){
+    this.life = this.life + value;
+
+    if (this.life == 0){
+      gameOver()
+    }else{
+      intangible = 50;
+    }
+  }
+
+
+
+
+
+
+
+
 };
 
 
 function main(){
-  loadFont();
+  loadFonts();
   var elem = document.getElementById("gb");
   HEIGHT = elem.offsetHeight;
   WIDTH = elem.offsetWidth;
@@ -153,6 +196,7 @@ function update(){
   block.update();
   obst.update();
   score.update();
+  health.update();
 }
 function draw(){
   ctx.clearRect(0, 0, WIDTH,HEIGHT);
@@ -160,6 +204,7 @@ function draw(){
   ground.draw();
   block.draw();
   score.draw();
+  health.draw();
 }
 function play(character){
   charNow = character;
@@ -187,23 +232,10 @@ function gameOver(){
   }
 }
 
-function loadFont()
-{
-  WebFontConfig = {
-    custom: { families: ['Press Start 2P'],
-              urls: [ 'css/fonts.css']},
-    active: function() {
-      /* code to execute once all font families are loaded */
-      console.log(" I sure hope my font is loaded now. ");
+function loadFonts(){
+  WebFont.load({
+    google: {
+      families: ['Press Start 2P']
     }
-  };
-  (function() {
-    var wf = document.createElement('script');
-    wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
-        '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
-    wf.type = 'text/javascript';
-    wf.async = 'true';
-    var s = document.getElementsByTagName('script')[0];
-    s.parentNode.insertBefore(wf, s);
-  })();
+  });
 }

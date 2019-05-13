@@ -1,12 +1,3 @@
 
-@font-face {
-  font-family: '8Bit';
-  src:url('../src/font/8Bit.ttf');
-}
-
-@font-face {
-  font-family: 'Press Start 2P';
-  font-style: normal;
-  font-weight: normal;
-  src: local('Press Start 2P'), url('../src/font/Press Start 2P.ttf') format('ttf');
-}
+@font-face {  font-family: '8Bit';  src:url('../src/font/8Bit.ttf');}
+@import url(https://fonts.googleapis.com/css?family=Press+Start+2P);
