@@ -132,10 +132,10 @@ health = {
     for (var i = 0; i < 3; i++) {
 
       if (this.life >= i+1){
-        ctx.drawImage(imgHeart, 100 + (32*i), 30 );
+        ctx.drawImage(imgHeart, 5 + (32*i), 30 );
       }
       else{
-        ctx.drawImage(imgEmptyHeart,100+ (32*i), 30 );
+        ctx.drawImage(imgEmptyHeart, 5+ (32*i), 30 );
       }
     }
   },
