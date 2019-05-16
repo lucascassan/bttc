@@ -21,7 +21,7 @@ jumpSound.volume = 0.5;
 
 deathSound.volume = 0.5;
 var music, enemSound;
-var canvas, ctx, HEIGHT, WIDTH, frames =0, maxJump = 2, dead = 0, aa = 1, auxEnem, score, enems, intangible =0,
+var canvas, ctx, ctxSc, HEIGHT, WIDTH, frames =0, maxJump = 2, dead = 0, aa = 1, auxEnem, score, enems, intangible =0,
 stateNow = 1, charNow,
 ground = {
   y: 0,
@@ -109,6 +109,7 @@ obst = {
     }
   }
 },
+
 score = {
   _value : 0,
   update : function(){
@@ -116,24 +117,25 @@ score = {
     this._value = Math.floor(frames/10);
   },
   draw : function(){
-    ctx.textAlign = "center";
-    ctx.font      = "27px 'Press Start 2P'";
-    ctx.fillStyle = "white";
-    ctx.strokeStyle = 'black';
-    ctx.drawImage( imgBox, WIDTH/2-82, 20);
-    ctx.fillText(this._value, WIDTH/2 , 60);
+    ctxSc.textAlign = "center";
+    ctxSc.font      = "27px 'Press Start 2P'";
+    ctxSc.fillStyle = "white";
+    ctxSc.strokeStyle = 'black';
+    ctxSc.drawImage( imgBox, WIDTH/2-82, 20);
+    ctxSc.fillText(this._value, WIDTH/2 , 60);
   }
 },
+
 health = {
   life : 3,
   draw : function(){
     for (var i = 0; i < 3; i++) {
 
       if (this.life >= i+1){
-        ctx.drawImage(imgHeart, 5 + (32*i), 30 );
+        ctxSc.drawImage(imgHeart, 5 + (32*i), 30 );
       }
       else{
-        ctx.drawImage(imgEmptyHeart, 5+ (32*i), 30 );
+        ctxSc.drawImage(imgEmptyHeart, 5+ (32*i), 30 );
       }
     }
   },
@@ -163,13 +165,26 @@ health = {
 function main(){
   loadFonts();
   var elem = document.getElementById("gb");
+  var elemSc = document.getElementById("score");
+
   HEIGHT = elem.offsetHeight;
   WIDTH = elem.offsetWidth;
+  H_SCORE = 60;
+
   canvas = document.createElement("canvas");
   canvas.width = WIDTH;
   canvas.height = HEIGHT;
   ctx = canvas.getContext("2d");
   elem.appendChild(canvas);
+
+  
+  canvasSc = document.createElement("canvas");
+  canvasSc.width = WIDTH;
+  canvasSc.height = H_SCORE;
+  ctxSc = canvasSc.getContext("2d");
+  elemSc.appendChild(canvasSc);
+
+
   document.addEventListener("mousedown", click);
   document.addEventListener("spacebar", click);
   document.body.onkeyup = function(e){ if(e.keyCode == 32){ block.jump();}}
@@ -218,7 +233,6 @@ function popEnems()
     [38,25, 'src/enem/01.png', 'src/enem/01.wav', 3],
   );
 }
-
 function gameOver(){
   if (stateNow == 1){
     stateNow = 0;
