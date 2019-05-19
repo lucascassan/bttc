@@ -29,13 +29,13 @@ function shareonFB(){
   var obj = {
     method:'share_open_graph',
     action_type: 'og.shares',
-
     action_properties: JSON.stringify({
       object: {
         'og:url': 'http://lucascassan.github.io/bttc/',
-        'og:title': 'Back To The Cassoshi',
-        'og:description': 'Back To The Cassoshi',
-        'og:image': 'https://i.imgur.com/WGeBNZq.png'
+        'og:description': 'Teste'
+    //    'og:title': 'Back To The Cassoshi',
+    //    'og:description': 'Back To The Cassoshi',
+    //    'og:image': 'https://i.imgur.com/WGeBNZq.png'
       }
 
     })
