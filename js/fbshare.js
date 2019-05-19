@@ -35,10 +35,5 @@ function shareonFB(){
         'og:image': FBPic
       }
     })
-  }
-
-
-
-
-
+  })
 }
