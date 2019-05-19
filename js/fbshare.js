@@ -18,8 +18,9 @@ window.fbAsyncInit = function() {
 function shareonFB(){
 FB.ui({
     display: 'popup',
-    method: 'share',
-    title: '150 pontos',
+    method: 'feed',
+    name: '150 pontos',
+    caption: 'teste',
     description: 'COMING SOON - 29.06.2019',
     link: 'http://lucascassan.github.io/bttc/',
     picture: 'https://i.imgur.com/fHX8cL7.png'//,
