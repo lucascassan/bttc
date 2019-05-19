@@ -20,6 +20,7 @@ function shareonFB(){
   FB.ui({
     method: 'share',
     href: 'http://lucascassan.github.io/bttc/',
+    quote: 'TEST1'
   }, function(response){});
 
 }
