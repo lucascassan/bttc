@@ -6,22 +6,6 @@
 //
 // //
 //
-// if( navigator.userAgent.match(/Android/i)
-// || navigator.userAgent.match(/webOS/i)
-// || navigator.userAgent.match(/iPhone/i)
-// || navigator.userAgent.match(/iPad/i)
-// || navigator.userAgent.match(/iPod/i)
-// || navigator.userAgent.match(/BlackBerry/i)
-// || navigator.userAgent.match(/Windows Phone/i)
-// ){
-//
-// }
-// else {
-//
-// }
-
-
-
 
 
 var imgChar = new Image();
@@ -37,10 +21,9 @@ imgBox.src = "src/misc/box.png";
 var jumpSound = new Audio('src/music/jump.wav');
 var deathSound = new Audio('src/music/death.mp3');
 jumpSound.volume = 0.5;
-
 deathSound.volume = 0.5;
-var music, enemSound;
-var canvas, ctx, ctxSc, HEIGHT, WIDTH, frames =0, maxJump = 2, dead = 0, aa = 1, auxEnem, score, enems, intangible =0,
+
+var music, enemSound, canvas, ctx, ctxSc, HEIGHT, WIDTH, frames =0, maxJump = 2, dead = 0, aa = 1, auxEnem, score, enems, intangible =0,
 stateNow = 1, charNow,
 ground = {
   y: 0,
@@ -174,11 +157,6 @@ health = {
 
 
 
-
-
-
-
-
 };
 
 function main(){
@@ -196,13 +174,12 @@ function main(){
   ctx = canvas.getContext("2d");
   elem.appendChild(canvas);
 
-  
+
   canvasSc = document.createElement("canvas");
   canvasSc.width = WIDTH;
   canvasSc.height = H_SCORE;
   ctxSc = canvasSc.getContext("2d");
   elemSc.appendChild(canvasSc);
-
 
   document.addEventListener("mousedown", click);
   document.addEventListener("spacebar", click);
@@ -248,8 +225,11 @@ function play(character){
 function popEnems()
 {
   enems = new Array(
-    [50,30, 'src/enem/00.png', 'src/enem/00.wav', 5],
-    [38,25, 'src/enem/01.png', 'src/enem/01.wav', 3],
+//    [50,30, 'src/enem/00.png', 'src/enem/00.wav', 5],
+//    [38,25, 'src/enem/01.png', 'src/enem/01.wav', 3],
+//    [40,15, 'src/enem/02.png', 'src/enem/02.wav', 7],
+//    [40,29, 'src/enem/03.png', 'src/enem/03.wav', 10]
+    [45,36, 'src/enem/04.png', 'src/enem/04.mp3', 10]
   );
 }
 function gameOver(){
