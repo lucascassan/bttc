@@ -8,24 +8,33 @@ window.fbAsyncInit = function() {
 };
 
 (function(d, s, id){
-   var js, fjs = d.getElementsByTagName(s)[0];
-   if (d.getElementById(id)) {return;}
-   js = d.createElement(s); js.id = id;
-   js.src = "https://connect.facebook.net/en_US/sdk.js";
-   fjs.parentNode.insertBefore(js, fjs);
- }(document, 'script', 'facebook-jssdk'));
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "https://connect.facebook.net/en_US/sdk.js";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
 
 function shareonFB(){
-FB.ui({
-    display: 'popup',
-    method: 'feed',
-    name: '150 pontos',
-    caption: 'teste',
-    description: 'COMING SOON - 29.06.2019',
-    link: 'http://lucascassan.github.io/bttc/',
-    picture: 'https://i.imgur.com/fHX8cL7.png'//,
-    //href: 'http://lucascassan.github.io/bttc/'
+  // FB.ui({
+  //     display: 'popup',
+  //     method: 'feed',
+  //     name: '150 pontos',
+  //     caption: 'teste',
+  //     description: 'COMING SOON - 29.06.2019',
+  //     link: 'http://lucascassan.github.io/bttc/',
+  //     picture: 'https://i.imgur.com/fHX8cL7.png'//,
+  //     //href: 'http://lucascassan.github.io/bttc/'
 
-}, function(response){});
+  var obj = {
+    method: 'feed',
+    link: 'https://www.azeezkallayi.com/',
+    description: "description goes here",
+    picture: 'https://www.azeezkallayi.com/demo/test/womens-day.jpg',
+    name: 'International womens day'
+  };
+  FB.ui(obj);
+
+  
 
 }
