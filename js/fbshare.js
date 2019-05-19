@@ -15,12 +15,12 @@ window.fbAsyncInit = function() {
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
 
-function shareonFB(){
+function shareonFB(Value){
 
   FB.ui({
     method: 'share',
     href: 'http://lucascassan.github.io/bttc/',
-    quote: 'TEST1'
+    quote: Value;
   }, function(response){});
 
 }
