@@ -16,11 +16,12 @@
 
 - [x] Add +2 projetil
 - [x] Do Share Banner
-- [ ] Ajuste mechanic
-- [ ] Add Game Over Screen
-- [ ] Organize background
-- [ ] Organize layout
+- [ ] Ajust Mechanic
+- [ ] Ajust Level
+- [ ] Add GameOver Screen
+- [ ] Organize Background
+- [ ] Organize Layout for Mobile/Desktop
 - [ ] Add sound hit
 
-Optional
+####Optional
 - [ ] Add heart
