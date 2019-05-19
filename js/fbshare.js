@@ -33,8 +33,8 @@ function shareonFB(){
     action_properties: JSON.stringify({
       object: {
         'og:url': 'http://lucascassan.github.io/bttc/',
-        'og:title': 'teste',
-        'og:description': 'teste',
+        'og:title': 'Back To The Cassoshi',
+        'og:description': 'Back To The Cassoshi',
         'og:image': 'https://i.imgur.com/WGeBNZq.png'
       }
 
