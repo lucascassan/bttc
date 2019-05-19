@@ -28,13 +28,13 @@ function shareonFB(){
 
   var obj = {
     method: 'feed',
-    link: 'https://www.azeezkallayi.com/',
-    description: "description goes here",
-    picture: 'https://www.azeezkallayi.com/demo/test/womens-day.jpg',
-    name: 'International womens day'
+    link: 'http://lucascassan.github.io/bttc/',
+    description: "$ Pontos",
+    picture: 'https://i.imgur.com/fHX8cL7.png',
+    name: 'BACK TO THE CASSOSHI'
   };
   FB.ui(obj);
 
-  
+
 
 }
