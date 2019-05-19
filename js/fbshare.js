@@ -28,11 +28,19 @@ function shareonFB(){
 
   var obj = {
     method:'share_open_graph',
-    display: 'popup',
-    redirect_uri: 'http://lucascassan.github.io/bttc/',
-    description: "$ Pontos",
-    picture: 'https://i.imgur.com/WGeBNZq.png',
-    name: 'BACK TO THE CASSOSHI'
+    action_type: 'og.shares',
+
+    action_properties: JSON.stringify({
+      object: {
+        'og:url': 'http://lucascassan.github.io/bttc/',
+        'og:title': 'teste',
+        'og:description': 'teste',
+        'og:image': 'https://i.imgur.com/WGeBNZq.png'
+      }
+
+    })
+
+
   };
   FB.ui(obj);
 
