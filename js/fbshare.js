@@ -18,36 +18,26 @@ window.fbAsyncInit = function() {
 function shareonFB(){
 
   // Dynamically gather and set the FB share data.
-                  var FBDesc      = 'Cassoshi';
-                  var FBTitle     = 'Cassoshi';
-                  var FBLink      = 'http://lucascassan.github.io/bttc/';
-                  var FBPic       = 'https://i.imgur.com/WGeBNZq.png';
+  var FBDesc      = 'Cassoshi';
+  var FBTitle     = 'Cassoshi';
+  var FBLink      = 'http://lucascassan.github.io/bttc/';
+  var FBPic       = 'https://i.imgur.com/WGeBNZq.png';
 
-                  // Open FB share popup
-                  FB.ui({
-                      method: 'share_open_graph',
-                      action_type: 'og.shares',
-                      action_properties: JSON.stringify({
-                          object: {
-                              'og:url': FBLink,
-                              'og:title': FBTitle,
-                              'og:description': FBDesc,
-                              'og:image': FBPic
-                          }
-                      })
-                  },
-
-
-  var obj = {
-    method:'share_open_graph',
+  // Open FB share popup
+  FB.ui({
+    method: 'share_open_graph',
     action_type: 'og.shares',
     action_properties: JSON.stringify({
-      object:'http://lucascassan.github.io/bttc/',
+      object: {
+        'og:url': FBLink,
+        'og:title': FBTitle,
+        'og:description': FBDesc,
+        'og:image': FBPic
+      }
     })
+  }
 
 
-  };
-  FB.ui(obj);
 
 
 
