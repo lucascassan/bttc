@@ -21,8 +21,8 @@ FB.ui({
     method: 'share',
     title: '150 pontos',
     description: 'BACK TO THE CASSOSHI • COMING SOON • 29.06.2019',
-    link: 'THIS IS A LINK TO YOUR QUIZ'S PAGE ON YOUR WEBSITE',
-    picture: 'THIS PICTURE WILL BE THE FACEBOOK SHARE IMAGE',
+    link: 'http://www.lucascassan.github.io/bttc/',
+    picture: '/src/img/share_banner.png',
     href: 'http://www.lucascassan.github.io/bttc/',
 
 }, function(response){});
