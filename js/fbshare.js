@@ -21,9 +21,9 @@ FB.ui({
     method: 'share',
     title: '150 pontos',
     description: 'BACK TO THE CASSOSHI • COMING SOON • 29.06.2019',
-    link: 'http://www.lucascassan.github.io/bttc/',
+    link: 'http://lucascassan.github.io/bttc/',
     picture: 'https://i.imgur.com/fHX8cL7.png',
-    href: 'http://www.lucascassan.github.io/bttc/',
+    href: 'http://lucascassan.github.io/bttc/',
 
 }, function(response){});
 
