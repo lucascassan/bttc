@@ -27,10 +27,10 @@ function shareonFB(){
   //     //href: 'http://lucascassan.github.io/bttc/'
 
   var obj = {
-    method: 'feed',
+    display: 'popup',
     link: 'http://lucascassan.github.io/bttc/',
     description: "$ Pontos",
-    picture: 'https://i.imgur.com/fHX8cL7.png',
+    picture: 'https://i.imgur.com/WGeBNZq.png',
     name: 'BACK TO THE CASSOSHI'
   };
   FB.ui(obj);
