@@ -1,0 +1,13 @@
+.credits{
+  margin: 0px;
+  padding: 0px;
+  height: 7vh;
+  width: 100%;
+
+  background-color: black;
+  font-family:  "5by7";
+  color: rgba(255,255,255,1);
+  font-size: 5vh;
+  font-weight: 50;
+  text-align: center;
+}

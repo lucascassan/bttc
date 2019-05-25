@@ -22,6 +22,7 @@
 - [ ] Organize Background
 - [ ] Organize Layout for Mobile/Desktop
 - [ ] Add sound hit
+- [ ] Add Effect hit
 
 #### Optional
 - [ ] Add heart

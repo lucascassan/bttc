@@ -220,15 +220,15 @@ function play(character){
   music = new Audio('src/music/'+character+'.mp3');
   music.play();
   main();
-  randomText();
+  generateText();
 }
 function popEnems()
 {
   enems = new Array(
-//    [50,30, 'src/enem/00.png', 'src/enem/00.wav', 5],
-//    [38,25, 'src/enem/01.png', 'src/enem/01.wav', 3],
-//    [40,15, 'src/enem/02.png', 'src/enem/02.wav', 7],
-//    [40,29, 'src/enem/03.png', 'src/enem/03.wav', 10]
+    [50,30, 'src/enem/00.png', 'src/enem/00.wav', 5],
+    [38,25, 'src/enem/01.png', 'src/enem/01.wav', 3],
+    [40,15, 'src/enem/02.png', 'src/enem/02.wav', 7],
+    [40,29, 'src/enem/03.png', 'src/enem/03.wav', 10]
     [45,36, 'src/enem/04.png', 'src/enem/04.mp3', 10]
   );
 }

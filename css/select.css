@@ -1,7 +1,6 @@
 #select01, #select00 {
    width: 100%;
 }
-
 img {
   image-rendering: pixelated;
   image-rendering: -moz-crisp-edges;
