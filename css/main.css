@@ -50,8 +50,15 @@ body{
 }
 
 
-@media only screen and (max-width: 600px) {
-  .logo {
-    height: 35vh;
+@media only screen and (max-width: 800px) {
+
+  #flex {
+    display: flex;
+    /* Optional, if you want the DIVs 100% width: */
+    flex-direction: column;
   }
+  #flex > #IDcredits { order: 0; }
+  #flex > #IDscore { order: 1; }
+  #flex > #IDlogo { order: 2;}
+  #flex > #gb { order: 3};
 }
