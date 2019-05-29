@@ -1,30 +1,16 @@
-
-//
-// document.addEventListener('DOMContentLoaded', function () {
-//     alert('Todo conteúdo do arquivo foi carregado pelo navegador');
-// });
-//
-// //
-//
-
-
 var imgChar = new Image();
 var imgEnem = new Image();
-var imgHeart = new Image();
-imgHeart.src = "src/misc/Heart.png";
-var imgEmptyHeart = new Image();
-imgEmptyHeart.src = "src/misc/EmptyHeart.png";
-var imgBox = new Image();
-imgBox.src = "src/misc/box.png";
-
-
+var imgHeart = new Image(); imgHeart.src = "src/misc/Heart.png";
+var imgEmptyHeart = new Image(); imgEmptyHeart.src = "src/misc/EmptyHeart.png";
 var jumpSound = new Audio('src/music/jump.wav');
 var deathSound = new Audio('src/music/death.mp3');
+var hitSound = new Audio('src/music/hit.wav');
 jumpSound.volume = 0.5;
 deathSound.volume = 0.5;
+var music, enemSound, canvas, ctx, ctxSc, HEIGHT, WIDTH,
+frames =0, maxJump = 2, dead = 0, auxEnem,
+enems, intangible =0, stateNow = 1, charNow;
 
-var music, enemSound, canvas, ctx, ctxSc, HEIGHT, WIDTH, frames =0, maxJump = 2, dead = 0, aa = 1, auxEnem, score, enems, intangible =0,
-stateNow = 1, charNow,
 ground = {
   y: 0,
   a: 10,
@@ -88,8 +74,8 @@ obst = {
   },
   update: function(){
 
-    if (this.timeInsert ==0){
-      auxEnem = Math.floor(enems.length * Math.random()) ;
+    if (this.timeInsert == 0){
+      auxEnem = 1;//+Math.floor(enems.length * Math.random()) ;
       obst.insert(enems[auxEnem][0], enems[auxEnem][1], enems[auxEnem][2], enems[auxEnem][3], enems[auxEnem][4]);
     }
     else{
@@ -111,7 +97,6 @@ obst = {
     }
   }
 },
-
 score = {
   _value : 0,
   update : function(){
@@ -119,25 +104,23 @@ score = {
     this._value = Math.floor(frames/10);
   },
   draw : function(){
-    ctxSc.textAlign = "center";
-    ctxSc.font      = "27px 'Press Start 2P'";
+    ctxSc.textAlign = "right";
+    ctxSc.font      = "18px 'Press Start 2P'";
     ctxSc.fillStyle = "white";
     ctxSc.strokeStyle = 'black';
-    ctxSc.drawImage( imgBox, WIDTH/2-82, 20);
-    ctxSc.fillText(this._value, WIDTH/2 , 60);
+    ctxSc.fillText(this._value, WIDTH-5 , 30);
   }
 },
-
 health = {
   life : 3,
   draw : function(){
     for (var i = 0; i < 3; i++) {
 
       if (this.life >= i+1){
-        ctxSc.drawImage(imgHeart, 5 + (32*i), 30 );
+        ctxSc.drawImage(imgHeart, 5 + (32*i), 5 );
       }
       else{
-        ctxSc.drawImage(imgEmptyHeart, 5+ (32*i), 30 );
+        ctxSc.drawImage(imgEmptyHeart, 5+ (32*i), 5 );
       }
     }
   },
@@ -152,17 +135,16 @@ health = {
       gameOver()
     }else{
       intangible = 50;
+      hitSound.play();
     }
   }
-
-
-
 };
+
 
 function main(){
   loadFonts();
   var elem = document.getElementById("gb");
-  var elemSc = document.getElementById("score");
+  var elemSc = document.getElementById("IDscore");
 
   HEIGHT = elem.offsetHeight;
   WIDTH = elem.offsetWidth;
@@ -208,6 +190,7 @@ function update(){
 }
 function draw(){
   ctx.clearRect(0, 0, WIDTH,HEIGHT);
+  ctxSc.clearRect(0,0, WIDTH, H_SCORE);
   obst.draw();
   ground.draw();
   block.draw();
@@ -220,17 +203,7 @@ function play(character){
   music = new Audio('src/music/'+character+'.mp3');
   music.play();
   main();
-  generateText();
-}
-function popEnems()
-{
-  enems = new Array(
-    [50,30, 'src/enem/00.png', 'src/enem/00.wav', 5],
-    [38,25, 'src/enem/01.png', 'src/enem/01.wav', 3],
-    [40,15, 'src/enem/02.png', 'src/enem/02.wav', 7],
-    [40,29, 'src/enem/03.png', 'src/enem/03.wav', 10]
-    [45,36, 'src/enem/04.png', 'src/enem/04.mp3', 10]
-  );
+  doCredits();
 }
 function gameOver(){
   if (stateNow == 1){
@@ -239,13 +212,24 @@ function gameOver(){
     block.y = block.y-10;
     deathSound.play();
     music.pause();
+    console.info("Game Over");
   }
 }
-
+function popEnems(){
+  enems = new Array(
+    [50,30, 'src/enem/00.png', 'src/enem/00.wav', 5],
+    [38,25, 'src/enem/01.png', 'src/enem/01.wav', 3],
+    [40,15, 'src/enem/02.png', 'src/enem/02.wav', 7],
+    [40,29, 'src/enem/03.png', 'src/enem/03.wav', 10]
+    [45,36, 'src/enem/04.png', 'src/enem/04.mp3', 10]
+  );
+  console.info("Pop Array");
+}
 function loadFonts(){
   WebFont.load({
     google: {
       families: ['Press Start 2P']
     }
   });
+  console.info("Font Load");
 }

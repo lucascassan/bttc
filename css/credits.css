@@ -1,15 +1,18 @@
 .credits{
   margin: 0px;
   padding: 0px;
-  height: 4vh;
+  height: 10%;
   width: 100%;
-  padding-top: 5px;
-  padding-bottom:5px;
   background-image: url("../src/img/bgc.jpg");
   background-repeat: repeat;
   font-family:  "5by7";
   color: #836f64;
   font-size: 5vh;
   font-weight: 50;
-  text-align: center;
+   text-align: center;
+
+}
+.marquee {
+  height: 100%;
+  overflow: hidden;
 }

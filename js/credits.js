@@ -46,18 +46,20 @@ var titles = [
   "BARRIGA SOLTA"
 ];
 
-var text;
+var text ="BACK TO THE CASSOSHI";
+function doo(){
+    for (var i = 0; i < titles.length; i++) {
+      text = text +" • "+ titles[i];
+    }
+    document.getElementById("Q").innerHTML = text;
 
-function generateText(){
-  text = '';
+}
+
+function doCredits(){
+  var text ="BACK TO THE CASSOSHI";
   for (var i = 0; i < titles.length; i++) {
-    text = text +"       "+  titles[i]
+    text = text +"     "+ titles[i];
   }
-  var elem = document.getElementById('m1');
-  elem.innerHTML = text;
-  var elem2 = document.getElementById('m2');
-  elem2.innerHTML = text;
-  alert('s');
-
-
+  document.getElementById("IDmarquee").innerHTML = text;
+  $('.marquee').marquee();
 }

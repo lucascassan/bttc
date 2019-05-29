@@ -1,5 +1,6 @@
 body{
   background-image: url('../src/img/bg.jpg');
+  background-position: bottom;
   background-color: rgba(0,0,0,1);
   -webkit-user-select: none; /* Safari 3.1+ */
   -moz-user-select: none; /* Firefox 2+ */
@@ -10,19 +11,18 @@ body{
   padding: 0px;
 }
 
-
 .all{
-  /* background-color: yellow; */
+  /* background-color: yellow; */ */
   max-width: 900px;
-  width: 90%;
-  height: 100vh;
+  width: 90vh;
+  height: 80vh;
   margin:auto;
   display: block;
 }
 
 .logo{
   width: 90%;
-  height: 45vh;
+  height: 40%;
   max-width: : 600px;
   margin:auto;
   display: block;
@@ -36,7 +36,7 @@ body{
 
 .game{
   width: 100%;
-  height: 35vh;
+  height: 35%;
   min-height: 300px;
   max-width: : 600px;
   margin:auto;
@@ -45,16 +45,13 @@ body{
 
 .score{
   width: 100%;
-  height: 8vh;
-  background: orange;
+  height: 7%;
+   /* background: orange; */
 }
 
-
-@media only screen and (max-width: 800px) {
-
+@media only screen and (max-width: 600px) {
   #flex {
     display: flex;
-    /* Optional, if you want the DIVs 100% width: */
     flex-direction: column;
   }
   #flex > #IDcredits { order: 0; }
