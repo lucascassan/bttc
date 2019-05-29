@@ -54,8 +54,8 @@ body{
     display: flex;
     flex-direction: column;
   }
-  #flex > #IDcredits { order: 0; }
-  #flex > #IDscore { order: 1; }
-  #flex > #IDlogo { order: 2;}
+  #flex > #IDcredits { order: 2; }
+  #flex > #IDscore { order: 0; }
+  #flex > #IDlogo { order: 1;}
   #flex > #gb { order: 3};
 }
