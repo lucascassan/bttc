@@ -1,15 +1,14 @@
 .credits{
   margin: 0px;
   padding: 0px;
-  height: 10%;
+  height: 1em;
   width: 100%;
   background-image: url("../src/img/bgc.jpg");
   background-repeat: repeat;
   font-family:  "5by7";
   color: #836f64;
   font-size: 5vh;
-  font-weight: 50;
-   text-align: center;
+  text-align: center;
 
 }
 .marquee {
